@@ -1,0 +1,46 @@
+/* CustomerManagement styles */
+.customerPage-container {
+    width: 80%;
+    max-width: 1200px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
+  }
+  
+  .customerPage-container h1 {
+    margin-bottom: 20px;
+    margin-top: 40px;
+    color: #333;
+  
+  }
+  
+  .customer-list{
+  
+    padding: 20px;
+  }
+ .customer-item{
+    display: flex;
+    background-color: rgb(11, 120, 84);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px auto;
+    width: 80%;
+ }
+ .customer-item div{
+    margin: 10px 20px;
+    width: 200px;
+    color: white;
+ }
+ .customer-item button{
+    width: 90px;
+    background-color: #c15f5f;
+    height: 40px;
+    color: white;
+    border-radius: 5px;
+    border: none;
+ }
+ .customer-item button:hover{
+    cursor: pointer;
+    background-color: #ba4747;
+ }

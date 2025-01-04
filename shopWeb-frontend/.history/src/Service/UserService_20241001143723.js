@@ -1,0 +1,22 @@
+import axios from 'axios';
+
+
+
+ const GetDetailUser = async (id, access_token) =>{
+    const res = await axios.get(`http://localhost:3001/api/user/getDetail/${id}`,{
+        headers :{
+            token: `Bearer ${access_token}`
+        }
+    })
+    return res.data;
+    
+}
+ const refres_token = async()=>{
+  const res = await axios.post(`http://localhost:3001/api/user/refreshToken`)
+return res.data;
+}
+
+module.exports ={
+    GetDetailUser,
+    refres_token
+}

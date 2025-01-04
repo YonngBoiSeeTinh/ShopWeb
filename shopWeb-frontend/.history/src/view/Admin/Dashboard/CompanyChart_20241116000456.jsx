@@ -1,0 +1,64 @@
+import React from 'react';
+import './dashboard.scss';
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
+import {
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+} from 'recharts';
+const CompanyChart = ({ products = [] }) => {
+
+  console.log(products);
+  const arrCompany =['Apple', 'Samsung', 'Oppo', 'Xiaomi', 'Headphone', 'Accessories']
+
+  const getCompanyData = (company) => {
+    const countCompany = {};
+
+    // Khởi tạo các 
+    company.forEach((company) => {
+      countCompany[company] = 0;
+    });
+
+    // Lặp qua danh sách  và tăng giá trị đếm khi tìm thấy company phù hợp
+    products.forEach((product) => {
+      if (countCompany[product.company] !== undefined) {
+        countCompany[product.company] += 1;
+      }
+    });
+
+    return countCompany;
+  };
+
+  const companyData = getCompanyData(arrCompany);
+
+  // Chuyển đổi dữ liệu để sử dụng trong biểu đồ
+  const chartcompanyData = Object.entries(companyData).map(([company, count]) => ({
+    company,
+    count,
+  }));
+
+
+  return (
+    <div>
+     <ResponsiveContainer width={400} height={400}>
+        <PieChart>
+          <Pie
+            data={chartcompanyData}
+            dataKey="count"
+            nameKey="company"
+            outerRadius={120}
+            label={(entry) => entry.company}
+          >
+            {chartcompanyData.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={`#${Math.floor(Math.random()*16777215).toString(16)}`} />
+            ))}
+          </Pie>
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
+  );
+};
+
+export default CompanyChart;

@@ -1,0 +1,116 @@
+.storage_container{
+    width: 95%;
+    max-width: 1200px;
+    height: 100vh;
+    background-color: white;
+    margin: 0 auto; 
+    margin-top: 60px;
+    h3{
+        width: 98%;
+        margin: 0 auto;
+        height: 40px;
+        display: flex;
+        background-color:  #2f3d74e2;
+        align-items: center;
+        color: white;
+        padding: 8px;
+        padding-left: 40px;
+    }
+    .storage_title{
+        display: flex;
+        padding-left: 20px;
+        width: 95%;
+        height: 40px;
+        background-color: #f2f0f0;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        margin: 10px auto;
+        font-size: 16px;
+        font-weight: 600;
+        .num{
+            width: 150px;
+        }.name{
+            width: 300px;
+        }
+        .version{
+            width: 200px;
+        }
+        .count{
+            width: 200px;
+        }
+        .action{
+            width: 300px;
+        }
+    }
+    .storage_item{
+        display: flex;
+        padding-left: 20px;
+        width: 95%;
+        min-height: 40px;
+        background-color: #ffffff;
+       
+        border-radius: 8px;
+        margin: 10px auto;
+        font-size: 15px;
+        box-shadow: 0px 4px 8px #403f3f;
+        align-items: center;
+        color: #4b4b4b;
+        .num{
+            width: 150px;
+        }.name{
+            width: 300px;
+        }
+        .version{
+            width: 700px;
+            height: 50px;
+            overflow: hidden;
+          .version_detail{
+            display: flex;
+            align-items: center;
+            margin: 5px 5px;
+            .color_name{
+                width: 100px;
+            }
+            .color_icon{
+                width: 42px;
+                height: 40px;
+                border-radius: 100%;
+                margin: 0 20px;
+                border: 1px solid blue;
+            }
+            .count{
+                margin-left: 50px;
+            }
+            .outStock{
+                color: red;
+            }
+          }
+        }
+        .count{
+            width: 200px;
+        }
+        .action{
+            width: 300px;
+          p{
+            color: rgb(26, 79, 39);
+            font-weight: 600;
+            
+          }
+          p:hover{
+            cursor: pointer;
+            color: rgb(44, 106, 60);
+            text-decoration: underline;
+          }
+           
+        }
+    }
+    .storage_item:hover .version {
+        cursor: pointer;
+        height: auto;
+    }
+    .storage_list{
+        height: 500px;
+    }
+    
+}

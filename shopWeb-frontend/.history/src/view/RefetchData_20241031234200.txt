@@ -1,0 +1,49 @@
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import axios from 'axios';
+
+const fetchCarts = async () => {
+    const response = await axios.get('/api/carts');
+    return response.data;
+};
+
+const MyComponent = () => {
+    const queryClient = useQueryClient();
+
+    // Fetch dữ liệu ban đầu
+    const { data, isLoading } = useQuery(['carts'], fetchCarts);
+
+    // Mutation cho create, update, delete
+    const createCart = useMutation((newCart) => axios.post('/api/carts', newCart), {
+        onSuccess: () => {
+            // Invalidate để refetch sau khi tạo
+            queryClient.invalidateQueries(['carts']);
+        },
+    });
+
+    const deleteCart = useMutation((id) => axios.delete(`/api/carts/${id}`), {
+        onSuccess: () => {
+            // Invalidate để refetch sau khi xóa
+            queryClient.invalidateQueries(['carts']);
+        },
+    });
+
+    const updateCart = useMutation((updatedCart) => axios.put(`/api/carts/${updatedCart.id}`, updatedCart), {
+        onSuccess: () => {
+            // Invalidate để refetch sau khi cập nhật
+            queryClient.invalidateQueries(['carts']);
+        },
+    });
+
+    return (
+        <div>
+            {/* UI của component */}
+            {isLoading ? 'Loading...' : (
+                <ul>
+                    {data.map(cart => (
+                        <li key={cart.id}>{cart.name}</li>
+                    ))}
+                </ul>
+            )}
+        </div>
+    );
+};

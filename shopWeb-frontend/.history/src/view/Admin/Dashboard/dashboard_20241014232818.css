@@ -1,0 +1,21 @@
+.dashboard{   
+   
+    height: 100vh;
+    margin: 0 auto ;
+    margin-top: 60px;
+    margin-left: 30px ;
+}
+.card-top{
+    display: flex;
+    width: 95%;
+    margin:  10px auto;
+   
+}
+.card-top_item{
+    width: 23%;
+    height: 150px;
+    background-color: rgb(63, 114, 114);
+    border-radius: 8px;
+    margin: 5px 10px;
+    margin-top: 20px;
+}

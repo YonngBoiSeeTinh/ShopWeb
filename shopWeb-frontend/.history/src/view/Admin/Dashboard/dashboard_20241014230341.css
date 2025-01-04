@@ -1,0 +1,13 @@
+.dashboard{   
+   
+    height: 100vh;
+    margin: 0 auto ;
+    margin-top: 60px;
+    margin-left: 30px ;
+}
+.chart1{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(188, 154, 154);
+  
+}

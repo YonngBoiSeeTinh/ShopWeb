@@ -1,0 +1,17 @@
+
+.employee-product-container {
+    width: 98%;
+    padding: 20px;
+    background-color: #9f0000;
+    border-radius: 20px;
+    margin: 20px auto;
+   
+    .employee_product_list{
+        min-width:80%;
+        display: flex;
+       flex-wrap: wrap;
+       min-height: 800px;
+       margin: 10px auto;
+    }
+}
+

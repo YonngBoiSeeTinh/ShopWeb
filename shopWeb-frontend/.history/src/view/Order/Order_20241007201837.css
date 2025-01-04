@@ -1,0 +1,70 @@
+/* Container bao quanh đơn hàng */
+.order-container {
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.order-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 16px;
+}
+
+.order-table th,
+.order-table td {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+}
+
+.order-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+  text-align: center;
+}
+
+.order-table td {
+  text-align: center;
+}
+
+.order-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.status-accepted {
+  color: #28a745; /* Màu xanh lá cây cho trạng thái đã xác nhận */
+  font-weight: bold;
+}
+
+.status-pending {
+  color: #dc3545; /* Màu đỏ cho trạng thái chưa xác nhận */
+  font-weight: bold;
+}
+
+.deleteItem {
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.deleteItem:hover {
+  background-color: #ff7875;
+}

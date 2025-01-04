@@ -1,0 +1,69 @@
+/* Order.css */
+.order-item {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 15px 0;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.order-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.order-name {
+  font-size: 18px;
+  font-weight: bold;
+ 
+}
+
+.order-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.order-image img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+ .quantity-order, .order-status {
+  font-size: 15px;
+  margin: 5px 0;
+}
+.order-price{
+  font-size: 12px;
+}
+
+.order-status {
+  font-weight: bold;
+  color: #28a745;
+}
+
+.order-status:not(.accept) {
+  color: #dc3545;
+}
+
+.deleteItem {
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.deleteItem:hover {
+  background-color: #ff7875;
+}

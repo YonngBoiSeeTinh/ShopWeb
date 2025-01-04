@@ -1,0 +1,20 @@
+.employee-layout{
+    display: flex;
+    width: 100vw;
+}
+.main-content{
+    flex:6;
+    float: right;
+    margin-left: 220px;
+    background-color: white;
+    height: 100vh;
+}
+
+.notify{
+    width: 100vw;
+    height:auto;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

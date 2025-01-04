@@ -1,0 +1,10 @@
+.cartNum{
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    color: white;
+    border-radius: 100%;
+    position: fixed;
+    top: -2px;
+   right: 280px;
+}

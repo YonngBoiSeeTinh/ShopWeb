@@ -1,0 +1,221 @@
+#khongCoSanPham {
+	opacity: 0;
+	width: 0;
+	color: red;
+	font-size: 30px;
+	font-weight: bold;
+	height: 320px;
+}
+/* Home Product */
+	
+
+
+	.sanPham {
+		width: 230px;
+		height: 360px;
+		background-color: #222;
+		border-radius: 20px;
+		margin: 0 5px;	
+		display: block;
+		position: relative;
+		padding: 10px 0;
+		transition: transform 0.3s, box-shadow 0.3s; /* Hiệu ứng chuyển động */
+		margin:20px 5px;
+	}
+	.sanPham:hover {
+		transform: translateY(-5px); /* Dịch chuyển sản phẩm lên trên khi hover */
+		box-shadow: 5px 8px 16px rgba(178, 178, 178, 0.5); /* Đổ bóng sản phẩm khi hover */
+		cursor: pointer;
+	}
+	
+	.sanPham .price span {
+	    display: inline-block;
+	    vertical-align: middle;
+	    font-size: 12px;
+	    text-decoration: line-through;
+	    margin-left: 5px;
+	    color: #222;
+	}
+	/* Name and image */
+		/* Hinh anh san pham */
+		.sanPham  img {
+			display: block;
+			width: 170px;
+			height: 180px;
+			margin: 0 auto;
+			border-radius: 10px;
+		}
+	
+	
+		/* Ten san pham */
+		.sanPham h3 {
+			display: block;
+			padding: 0 10px;
+			color: #ffffff;
+			line-height: 1.3em;
+			font-size: 18px;
+			font-weight: normal;
+			margin-top: 20px;
+		}
+		
+		.sanPham .price {
+			display: block;
+			padding: 5px 10px 0px 10px;
+			
+		}
+		.sanPham .price span{
+			color: #d8d8d8;
+			font-size: 12px;
+			margin-left: 8px;
+		}
+		.sanPham strong {
+		    display: inline-block;
+		    vertical-align: middle;
+		    overflow: hidden;
+		    font-size: 14px;
+		    color: #f2f2f2;
+		    line-height: 15px;
+		}
+
+		.ratingresult {
+			margin-top: 8px;
+			margin-left: 10px;
+		}
+		.ratingresult span {
+		    display: inline-block;
+		    top: 1px;
+		    margin-left: 5px;
+		    vertical-align: middle;
+		    text-decoration: none;
+		    font-size: 12px;
+		    color: #fffefe;
+		}
+		.fa-star, .fa-star-o {
+			color: orange;
+		}
+	
+
+	/* Khuyen mai */
+		.sanPham label {
+		    display: inline-block;
+		    font-size: 12px;
+		    color: #fff;
+		    font-weight: 600;
+		    border-radius: 5px;
+		    height: 18px;
+			margin-left: 10px;
+			border: #ff9c00 1px solid;
+			
+		}
+		.sanPham label {
+		    display: inline-block;
+		    font-size: 12px;
+		    color: #fff;
+		    font-weight: 600;
+		    border-radius: 5px;
+		    height: 18px;
+			margin-left: 10px;
+			
+			
+		}
+		/* Giam gia thanh */
+		.sanPham label.giamgia {
+			background-image: -webkit-gradient(linear, left top, right top, from(#ff9c00), to(#ec1f1f));
+		    background-image: -webkit-linear-gradient(left, #ff9c00 0%, #ec1f1f 100%);
+		    background-image: -o-linear-gradient(left, #ff9c00 0%, #ec1f1f 100%);
+		    background-image: linear-gradient(90deg, #ff9c00 0%, #ec1f1f 100%);
+		    border-radius: 10px;
+			padding-bottom: 22px;
+			padding-right:8px ;
+		}
+		.sanPham label.moi {
+			border: #ff9c00 1px solid;	
+			padding-bottom: 5px;
+		}
+		.sanPham label.hightRate {
+			border: #f6e0e0 1px solid;	
+			font-size: 10px;
+			background-color: #e3e7eb;
+			color: #ec1f1f;
+		}
+		.sanPham label.tragop {
+			border: #4d4c4b 1px solid;	
+			padding-bottom: 5px;
+		}
+		/* Kí tự sấm sét */
+		.fa-bolt { 
+			width: 20px;
+			height: 20px;
+			text-align: center;
+			line-height: 20px;
+			border-radius: 50%;
+			background: #f21;
+			color: white;
+		}
+	/* ===== End Khuyen mai ====== */
+
+	/* ===== Them Vao Gio Hang ==== */
+	.tooltip {
+		position: absolute;
+		display: inline-block;
+		bottom: 5px;
+		right: 5px;
+	}
+	
+	.tooltip .tooltiptext {
+		visibility: hidden;
+		width: 140px;
+		background-color: #555;
+		color: #fff;
+		text-align: center;
+		border-radius: 6px;
+		padding: 5px;
+		position: absolute;
+		z-index: 21;
+		bottom: 150%;
+		left: 50%;
+		margin-left: -75px;
+		opacity: 0;
+		transition: opacity 0.3s;
+	}
+	
+	.tooltip .tooltiptext::after {
+		content: "";
+		position: absolute;
+		top: 100%;
+		left: 50%;
+		margin-left: -5px;
+		border-width: 5px;
+		border-style: solid;
+		border-color: #555 transparent transparent transparent;
+	}
+	
+	.tooltip:hover .tooltiptext {
+		visibility: visible;
+		font-size: 15px;
+		opacity: 1;
+	}
+	
+		.themvaogio {
+			z-index: 20;
+			border: 1px solid #e3e7eb;
+			border-radius: 50%;
+			width: 1.5em;
+			height: 1.5em;
+			font-size: 1.5em;
+			color: rgb(163, 161, 161);
+			background: none;
+			transition-duration: .2s;
+			cursor: pointer;
+		}
+		.themvaogio:hover {
+			color: black;
+			background-color: #e6e6e6;
+			box-shadow: 0px 8px 10px 0px rgba(0,0,0,0.2);
+		}
+		.themvaogio:active {
+			box-shadow: none;
+		}
+		
+	/* ===== End Them Vao Gio Hang ==== */
+/* ====== End Home Product ======= */

@@ -1,0 +1,128 @@
+.cart-container {
+  max-width: 800px;
+  margin: 40px auto;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 50px;
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 60px;
+}
+
+.cart-header a {
+  text-decoration: none;
+  color: rgb(24, 24, 24);
+  font-size: 20px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 20px;
+  background-color: #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.item-image img {
+  width: 90px;
+  height: auto;
+}
+
+.item-details {
+  flex-grow: 1;
+  padding: 0 20px;
+  margin: auto 0;
+  margin-left: 20px;
+}
+
+.item-price  {
+ 
+  margin: auto 0;
+}
+.item-price p  {
+ 
+ margin-left: 10px;
+}
+
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  margin: auto 0;
+}
+
+.quantity-control button {
+  background-color: #68c1ee;
+  border: none;
+  padding: 5px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+}
+
+.cart-summary {
+  text-align: right;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.cart-form {
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+}
+
+.customer-info, .delivery-method, .additional-options, .total-section, .cart-agreement {
+  margin-bottom: 20px;
+}
+
+.customer-info input[type="text"] {
+  width: 100%;
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.delivery-method select, .delivery-method input[type="text"] {
+  width: 100%;
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.total-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total-price {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 10px;
+  background-color: blue;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.pickItem{
+  width: 30px;
+  height: 30px;
+  margin: auto 10px;
+ 
+}

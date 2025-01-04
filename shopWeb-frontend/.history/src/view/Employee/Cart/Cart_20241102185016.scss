@@ -1,0 +1,35 @@
+
+.employee_cart-container{
+  width: 90%;
+  margin: 60px auto;
+  height: 400px;
+  .cart-header {
+    display: flex;
+    align-items: center;
+    background-color:   #2f4474e2;
+    color: white;
+    height: 40px;
+    padding: 5px;
+  }
+  .cart_content{
+    display: flex;
+   .cart_pro{
+    width: 60%;
+   }
+  }
+  .cart-form{
+    margin-left: 20px;
+    .customer-info{
+      input{
+        margin: 10px auto;
+      }
+    }
+  .order-button{
+    font-size: 25px;
+  }
+   .order-button:hover{
+    opacity: 0.78;
+  }
+  }
+  
+}

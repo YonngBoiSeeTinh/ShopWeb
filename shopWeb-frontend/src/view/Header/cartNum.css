@@ -1,0 +1,14 @@
+.cartNum{
+    width: 20px;
+    height: 20px;
+    background-color: rgba(228, 44, 44, 0.819);
+    color: rgb(241, 230, 17);
+    font-size: 15px;
+    border-radius: 100%;
+    position: fixed;
+    top: 8px;
+   right: 268px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}

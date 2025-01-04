@@ -1,0 +1,83 @@
+/* CustomerManagement styles */
+.customerPage-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .customerPage-container h1 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .customer-search {
+    display: block;
+    width: 70%;
+    max-width: 700px;
+    padding: 8px 12px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-left: 50px;
+    margin-top: 40px;
+  }
+  
+  .customer-table {
+    width: 90%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    
+  }
+  
+  .customer-table th,
+  .customer-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .customer-table th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .customer-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* CustomerItem styles */
+  .customer-item tr {
+    transition: background-color 0.3s ease;
+  }
+  
+  .customer-item tr:hover {
+    background-color: #fafafa;
+  }
+  
+  .customer-item button {
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .customer-item button:hover {
+    background-color: #45a049;
+  }
+  
+  .customer-item button.delete {
+    background-color: #f44336;
+  }
+  
+  .customer-item button.delete:hover {
+    background-color: #d32f2f;
+  }
+  
