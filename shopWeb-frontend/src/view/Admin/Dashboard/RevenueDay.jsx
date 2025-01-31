@@ -15,13 +15,13 @@ const RevenueCount = ({ OrderList = [] }) => {
       };
   
       orders.forEach(order => {
-        const createdAt = new Date(order.createdAt); // Giả sử `createdAt` là thuộc tính chứa ngày tạo
+        const createdAt = new Date(order.updatedAt); // Giả sử `createdAt` là thuộc tính chứa ngày tạo
         const day = createdAt.getDate();
         const month = createdAt.getMonth();
         const year = createdAt.getFullYear();
   
-        if (year === currentYear && month === currentMonth) {
-          if (day === currentDay) {
+        if (year === currentYear && month === currentMonth && order.isPaid) {
+          if (day === currentDay ) {
             count.currentDay += order.totalPrice;
           } else if (day === currentDay - 1) {
             count.previousDay += order.totalPrice;

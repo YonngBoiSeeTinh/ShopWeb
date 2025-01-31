@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import './Cart.css';
+import './Cart.scss';
 import CartItem from "./CartItem";
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
 import Loading from "../Loading/Loading";
+import { version } from "process";
 
 const Cart = ({setAlertMessage,setShowAlert, setType}) => {
   const user = useSelector((state) => state.user);
@@ -78,7 +79,10 @@ const Cart = ({setAlertMessage,setShowAlert, setType}) => {
         totalPrice: item.totalPrice, 
         amount: item.amount,      
         userId,  
-        productId:item.productId,                
+        version:item.version,
+        productId:item.productId,  
+        cusName:user.name, 
+        address:user?.address,
         color: item.color,      
         isPaid: false,            
         accept: false             
@@ -93,7 +97,8 @@ const Cart = ({setAlertMessage,setShowAlert, setType}) => {
           // Tìm số lượng tồn kho theo màu
           const colorDetails = product.colors.find((color) => color.color === item.color);
           console.log('colordetail',colorDetails.countInstock);
-          const countInStock = colorDetails?.countInstock || 0;
+          const versionDetail = colorDetails.version.find((version) => version.name === item.version);
+          const countInStock = versionDetail?.countInstock || 0;
     
           console.log('countInStock', countInStock, 'item.amount', item.amount);
     
@@ -132,7 +137,7 @@ const Cart = ({setAlertMessage,setShowAlert, setType}) => {
     
           // Cập nhật lại danh sách giỏ hàng sau khi xóa
           setSelectedCart([]);
-          updateCartList(); // Làm mới lại dữ liệu giỏ hàng nếu cần
+          updateCartList(); // Làm mới lại dữ liệu giỏ hàng 
         } else {
           alert('Một số đơn hàng đặt thất bại!');
         }

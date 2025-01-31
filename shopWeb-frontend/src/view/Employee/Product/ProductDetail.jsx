@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductDetail from '../../Product/ProductDetail';
+import ProductDetail from '../../Product/ProductDetails/ProductDetail';
 import './ProductDetail.scss' 
 const ProductDetailPage = ({setAlertMessage,setShowAlert, setType}) => {
  

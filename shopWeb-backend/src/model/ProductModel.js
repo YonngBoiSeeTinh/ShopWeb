@@ -9,6 +9,13 @@ const versionSchema = new mongoose.Schema({
     price: { type: String, required: false },
     countInstock: { type: Number, required: false }
 });
+const commentSchema = new mongoose.Schema({
+    user_id: { type: String, required: false },
+    rateStart: { type: Number, required: false },
+    commentDes: { type: String, required: false },
+    version: { type: String, required: false },
+    image: { type: String, required: false }
+});
 const colorSchema = new mongoose.Schema({
     color: { type: String, required: false },
     code: { type: String, required: false },
@@ -24,10 +31,13 @@ const productSchema = new mongoose.Schema(
         price: { type: Number, required: false },
         rating: { type: Number, required: false },
         rateCount: { type: Number, required: false },
+        rateStart: { type: Number, required: false },
+        sellCount: { type: Number, required: false },
         promo: { type: Number, required: false },
         detail: { type: [detailSchema], required: false },
         description: { type: String, required: false },
-        colors: { type: [colorSchema], required: false }
+        colors: { type: [colorSchema], required: false },
+        comments: { type: [commentSchema], required: false }
     },
     {
         timestamps: true

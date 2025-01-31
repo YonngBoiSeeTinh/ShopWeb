@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import './ProductDetail.scss'; // Đảm bảo bạn đã tạo và liên kết file CSS
+import './Styles/ProductDetail.scss'; 
 import axios from 'axios';
-import ProductGallery from "./ProductComnonent/AddProduct/ProductGallery";
-import ProductAddForm from "./ProductComnonent/AddProduct/ProductAddForm";
+import ProductGallery from "./ProductComnonent/ProductGallery";
+import ProductAddForm from "./ProductComnonent/ProductAddForm";
 
 function AddProduct({setAlertMessage,setShowAlert, setType}) {
     const [imageLink, setImageLink] = useState('');
@@ -12,17 +12,24 @@ function AddProduct({setAlertMessage,setShowAlert, setType}) {
         image: '',
         subImage:[],
         price: Number('0'),
+        rateCount:Number('0'),
+        rateStart:Number('0'),
+        sellCount:Number('0'),
         rating: Number('5'),
-        rateCount: Number('0'),
         description: '',
         promo:Number('0'),
-        detail: [],
+        detail:  [{ name: "Loại sản phẩm", value: "" },
+                  { name: "Hệ điều hành", value: "" },
+                  { name: "Màn hình", value: "" },
+                  { name: "Pin", value: "" },
+                  { name: "Ram", value: "" },
+                  { name: "Rom", value: "" },],
         colors: []
     };
     
     // Trong useState
     const [product, setProduct] = useState(initialProductState);
-  
+    const [subImageLink, setSubImage] = useState(product.subImage);
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -57,7 +64,7 @@ function AddProduct({setAlertMessage,setShowAlert, setType}) {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:3001/api/product/create', product);
-            console.log(response.data);
+            console.log("Add product :",response.data);
             if(response.data.status === "OK"){
                 setAlertMessage("Thêm sản phẩm thành công");
                 setType("success");
@@ -76,12 +83,33 @@ function AddProduct({setAlertMessage,setShowAlert, setType}) {
             console.error("There was an error adding the product!", error);
         }
     };
+    const handleSubImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const imageUrl = e.target.result;
+    
+                setSubImage((prev) => {
+                    const updatedSubImages = [...prev, imageUrl];
+                    // Cập nhật cả `product.subImage`
+                    setProduct((productPrev) => ({
+                        ...productPrev,
+                        subImage: updatedSubImages,
+                    }));
+                    return updatedSubImages;
+                });
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+    
 
     return (
         <div className="product_content">
             <div className="product_container">
-                <ProductGallery imageLink={imageLink} handleFileChange={handleFileChange} />
-                <ProductAddForm product={product} handleChange={handleChange} handleSubmit={handleSubmit} setProduct={setProduct} />
+                <ProductGallery img={product.image} imageLink={imageLink} handleFileChange={handleFileChange} subImage={subImageLink || []} handleSubImageChange={handleSubImageChange}/>
+                <ProductAddForm product={product} handleChange={handleChange} handleSubmit={handleSubmit} setProduct={setProduct}  subImage={subImageLink || []} handleSubImageChange={handleSubImageChange} />
             </div>
         </div>
     );

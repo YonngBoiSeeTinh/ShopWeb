@@ -69,7 +69,12 @@ function Order({order,handleDeleteOrder,setAlertMessage,setShowAlert, setType })
           : (order.accept ? "Đã xác nhận" : "Chưa xác nhận")
         }
         </div>
-        <button className="deleteOrder"  onClick={() =>handleClickDelete(order._id) }>Hủy</button>
+        {order.isPaid 
+          ?   <button className="deleteOrder" >Đánh giá</button> 
+          : (order.accept ?<button className="deleteOrder" >Vui lòng đợi</button>
+          :  <button className="deleteOrder"  onClick={() =>handleClickDelete(order._id) }>Hủy</button>)
+        }
+      
       </div>
     </div>
     );

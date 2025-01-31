@@ -6,8 +6,8 @@ import SeeAll from './view/Product/SeeAllProduct';
 import Header from './view/Header/Header';
 import Footer from './view/Footer/Footer';
 import TakeCare from './view/Care/TakeCare';
-import ProductDetail from './view/Product/ProductDetail';
-import ComProduct from './view/Company/ComProduct';
+import ProductDetail from './view/Product/ProductDetails/ProductDetail';
+import CategoyProduct from './view/Product/CategoryProduct';
 import Cart from './view/Cart/Cart';
 import UserPage from './view/User/UserPage';
 import AdminCustomerPage from './view/Admin/Customer/CustomerPage'
@@ -33,9 +33,6 @@ import { useDispatch } from 'react-redux';
 import { updateUser } from './Redux/sliders/userSlide';
 import { useSelector } from 'react-redux';
 import OrderPage from './view/Admin/Order/OrderPage';
-import NonAcceptOrder from './view/Admin/Order/Order';
-import AcceptOrder from './view/Admin/Order/OrderAccept';
-import PaidedOrder from './view/Admin/Order/OrderPaid';
 import AddEmployee from './view/Admin/Employee/AddEmployee'
 import Storage from './view/Admin/Storage/Storage';
 import TimeKeeping from './view/Admin/TimeKeeping/TimeKeeping';
@@ -138,7 +135,7 @@ const [updateCart, setUpdateCart] = useState(false);
          
           <Route path='/product/:name' element={<ProductDetail setUpdateCart={setUpdateCart}
              setAlertMessage={setAlertMessage} setShowAlert={setShowAlert} setType={setType}/>} />
-          <Route path='/company/:companyName' element={<ComProduct />} />
+          <Route path='/category/:category' element={<CategoyProduct />} />
           <Route path='/employeeOrder' element={<OrderPage style={{ width: '80%' }}/>} />
           <Route path='/userPage' element={<UserPage setIsSignIn={setIsSignIn}  setAlertMessage={setAlertMessage} setShowAlert={setShowAlert} setType={setType}/>} />
           
@@ -149,11 +146,8 @@ const [updateCart, setUpdateCart] = useState(false);
               <Route path='storage' element={<Storage setAlertMessage={setAlertMessage} setShowAlert={setShowAlert} setType={setType}/>} ></Route>
               <Route path='timekeeping' element={<TimeKeeping  setAlertMessage={setAlertMessage} setShowAlert={setShowAlert} setType={setType}/>} ></Route>
               
-              <Route path='orders' element={<OrderPage />} >
-                 <Route path='nonAccept' element={<NonAcceptOrder setAlertMessage={setAlertMessage} 
-                                          setShowAlert={setShowAlert} setType={setType}/>} /> 
-                 <Route path='accept' element={<AcceptOrder setAlertMessage={setAlertMessage} setShowAlert={setShowAlert} setType={setType}/>} /> 
-                 <Route path='paied' element={<PaidedOrder setAlertMessage={setAlertMessage} setShowAlert={setShowAlert} setType={setType}/>} /> 
+              <Route path='orders' element={<OrderPage setAlertMessage={setAlertMessage} 
+                                          setShowAlert={setShowAlert} setType={setType} />} >
               </Route> 
               <Route path='customers' element={<AdminCustomerPage setAlertMessage={setAlertMessage}
                      setShowAlert={setShowAlert} setType={setType} user ={user} />} /> 
@@ -169,7 +163,7 @@ const [updateCart, setUpdateCart] = useState(false);
                     setShowAlert={setShowAlert} setType={setType}/>} 
                />
               <Route path='addProduct' element={<AddProduct setAlertMessage={setAlertMessage} setShowAlert={setShowAlert} setType={setType} />} />  
-              <Route path='updateProduct/:name' element={<UpdateProduct setAlertMessage={setAlertMessage} setShowAlert={setShowAlert} setType={setType}/>}/>     
+              <Route path='updateProduct/:id' element={<UpdateProduct setAlertMessage={setAlertMessage} setShowAlert={setShowAlert} setType={setType}/>}/>     
           </Route>
           <Route path='/employee/' element={<EmployeeLayout isEmployee ={user.role === "employee"} user={user}/>}>
               <Route index element={<EmployeeDasboard />} /> 

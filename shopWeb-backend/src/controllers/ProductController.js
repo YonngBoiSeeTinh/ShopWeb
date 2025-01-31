@@ -30,9 +30,37 @@ const updateProduct = async (req, res) => {
 const updateProductStock  = async (req, res) => {
     const { id } = req.params; // Lấy productId từ params
     console.log(id)
-    const { color, amount } = req.body;
+    const { color,version, amount } = req.body;
     try {
-        const response = await ProductService.updateProductStock(id,color, amount);
+        const response = await ProductService.updateProductStock(id,color,version, amount);
+        return res.status(response.status === 'OK' ? 200 : 400).json(response);
+    } catch (error) {
+        return res.status(500).json({
+            status: 'ERROR',
+            message: 'Internal server error',
+            err: error.message,
+        });
+    }
+};
+const addStorageProduct  = async (req, res) => {
+    const { id } = req.params; // Lấy productId từ params
+    const { color,version, amount } = req.body;
+    try {
+        const response = await ProductService.addStorageProduct(id,color,version, amount);
+        return res.status(response.status === 'OK' ? 200 : 400).json(response);
+    } catch (error) {
+        return res.status(500).json({
+            status: 'ERROR',
+            message: 'Internal server error',
+            err: error.message,
+        });
+    }
+};
+const updateSold  = async (req, res) => {
+    const { id } = req.params; 
+    const { amount } = req.body;
+    try {
+        const response = await ProductService.updateSold(id,amount);
         return res.status(response.status === 'OK' ? 200 : 400).json(response);
     } catch (error) {
         return res.status(500).json({
@@ -97,5 +125,7 @@ module.exports = {
     getAllProducts,
     deleteProduct,
     getDetail,
+    addStorageProduct,
     updateProductStock,
+    updateSold,
 };

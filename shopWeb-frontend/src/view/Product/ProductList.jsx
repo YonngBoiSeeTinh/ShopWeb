@@ -1,15 +1,13 @@
 import React  from "react";
 import ProductItem from "./ProductItem.js"; 
 import { useNavigate } from "react-router-dom";
-import './ProductList.scss'
+import './style/ProductList.scss'
 
-const ProductList =( { color, listPro,filterPromo })=> {
+const ProductList =( { color, listPro =[]})=> {
   
     const navigate = useNavigate()
-
-    const filterList = listPro.filter((item)=>item.promo.name === filterPromo)
-
-    if (filterList.length === 0) {
+    const products = Array.isArray(listPro) ? listPro : [];
+    if (listPro.length === 0) {
       return (
         <div className="NoPro">
           <h3 className="nameList" style={{ color: 'red' }}>
@@ -18,37 +16,26 @@ const ProductList =( { color, listPro,filterPromo })=> {
         </div>
       );
     }
-    let nameList ="";
-    if(filterPromo === "giamgia"){
-        nameList = "Giảm giá lớn"
-    }
-    else if(filterPromo === "moi"){
-        nameList = "Mới ra mắt"
-    }
-    else {
-         nameList = "Trả góp 0%"
-    }
-
-    const gradient = `linear-gradient(120deg, ${color[0]} 0%, ${color[1]} 50%, ${color[0]} 100%)`;
-    const borderColor = { borderColor: color[0] };
-    const displayLen = filterList.length < 4 ? filterList.length : 4;
+    const nameList =""
     const handelSeeAll =()=>{
-        navigate('/seeAll', { state: {nameList,filterList,color } });
-      }
+        navigate('/seeAll', { state: {nameList,listPro } });
+    }
     return (
-      <div className="ListPro" style={borderColor}>
-        <h3 className="nameList" style={{ background: gradient, color: 'white' }}>
-          {nameList}
+      <div className="ListPro" >
+        <h3 className="nameList">
+          FLASH SALE
         </h3>
 
-        <div className="listProInfilter flexContain">
-          {filterList.slice(0, displayLen).map((product, index) => ( //Lặp qua từng phần tử của filterList
-            <ProductItem key={index} product={product} /> // truyền props
-          ))}
+        <div className="productList">
+          {products && products.length > 0 ? products.map((product, index) => ( 
+            <ProductItem key={index} product={product} /> 
+          )) :(
+            <div>Loading...   </div>
+          )}
         </div>
 
         <a className="seeAll" onClick={handelSeeAll} >
-          Xem tất cả {filterList.length} sản phẩm
+          Xem tất cả {products.length} sản phẩm
         </a>
       </div>
     );

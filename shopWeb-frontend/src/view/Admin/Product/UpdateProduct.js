@@ -1,25 +1,47 @@
 import React, { useState, useEffect } from "react";
-import './ProductDetail.scss'; // Đảm bảo bạn đã tạo và liên kết file CSS
+import './Styles/ProductDetail.scss';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import ProductGallery from "./ProductComnonent/UpdateProduct/ProductGallery";
-import ProductUpdateForm from "./ProductComnonent/UpdateProduct/ProductUpdateForm";
+import ProductGallery from "./ProductComnonent/ProductGallery";
+import ProductUpdateForm from "./ProductComnonent/ProductUpdateForm";
 
 function UpdateProduct({setAlertMessage,setShowAlert, setType}) {
     const location = useLocation();
     const [imageLink, setImageLink] = useState('');
-
+    const {id} = useParams()
+   
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
   
-    const [product, setProduct] = useState(location.state || {});
-    const [subImage, setSubImage] = useState(product?.subImage);
+    const fetchApi = async () => {
+        try {
+            const res = await axios.get(`http://localhost:3001/api/product/getDetail/${id}`);
+         
+            return res.data.data; 
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            throw error;
+        }
+    };
 
+    const query = useQuery({ queryKey: ['products'], queryFn: fetchApi });
+    const queryData = query.data || [];
 
+    const [product, setProduct] = useState({});
+    const [subImageLink, setSubImage] = useState(product?.subImage );
+
+    useEffect(() => {
+        if (queryData) {
+            setProduct(queryData);
+            setSubImage(queryData.subImage || []);
+        }
+    }, [queryData]);
+
+   
     // Kiểm tra nếu sản phẩm không tồn tại
     if (!product) {
         return <div>Product not found.</div>;
@@ -49,19 +71,20 @@ function UpdateProduct({setAlertMessage,setShowAlert, setType}) {
                     ...prev,
                     imageUrl
                 ]);   
-                console.log(subImage);             
+                    
             };
             reader.readAsDataURL(file);
         }
     };
-
+ 
     return (
         <div className="product_content">
-              <div className="product_container">
-            <ProductGallery img={product.image} imageLink={imageLink} handleFileChange={handleFileChange} subImage={subImage} handleSubImageChange={handleSubImageChange}/>
+            <div className="product_container">
+            <ProductGallery img={product.image} imageLink={imageLink} handleFileChange={handleFileChange}
+                 subImage={subImageLink|| []} handleSubImageChange={handleSubImageChange} setSubImage={setSubImage} />
             <ProductUpdateForm product={product} imageLink={imageLink} setProduct = {setProduct}
              setAlertMessage={setAlertMessage} setShowAlert={setShowAlert} setType={setType}
-             subImage={subImage}/>
+             subImage={subImageLink}/>
         </div>
         </div>
       

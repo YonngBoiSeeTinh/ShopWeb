@@ -17,7 +17,8 @@ const cartSchema = new mongoose.Schema({
              userName: { 
                 type: String, required: true 
              },
-             color: { type: String, required: true }
+             color: { type: String, required: true },
+             version: { type: String, required: true }
            
 
         },

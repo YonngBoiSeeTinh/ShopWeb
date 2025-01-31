@@ -47,9 +47,11 @@
       }
       .email{
          width: 220px;
+         overflow-x: hidden;
       }
       .phone{
          width: 200px;
+         margin-left: 8px;
       }
       .address{
          width: 250px;

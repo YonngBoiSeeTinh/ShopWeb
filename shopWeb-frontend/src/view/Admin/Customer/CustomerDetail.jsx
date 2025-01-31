@@ -8,7 +8,14 @@ import Order from "../../Order/Order";
 
 function UserPage({ setAlertMessage,setShowAlert, setType }) {
     const location = useLocation()
-    const user = location.state.user;
+    const [user, setUser] = useState(location.state.user);
+
+    // Lấy user từ location hoặc localStorage
+    useEffect(() => {
+        if (location.state?.user) {
+                setUser(location.state.user);
+        }
+    }, []);
  
     
     const fetchApiOrder = async () => {
@@ -25,7 +32,8 @@ function UserPage({ setAlertMessage,setShowAlert, setType }) {
     const queryOrder =  useQuery({ queryKey: ['orders'], queryFn: fetchApiOrder });
    
     const { refetch } = queryOrder;
-    const queryDataOrder = queryOrder.data || []; 
+  
+    const listOrder = queryOrder.data || []; 
     const handleDeleteOrder =async(id)=>{
         try {
           const res = await axios.delete(`http://localhost:3001/api/order/delete/${id}`);
@@ -53,7 +61,7 @@ function UserPage({ setAlertMessage,setShowAlert, setType }) {
                         <div style={{ display: 'flex' }}>
                                 <>
                                     <h1 className="user-name">{user?.name || ""}</h1>
-                                    <h1 className="vip_mem">{queryDataOrder.length > 7 ? "VIP MEMBER" : ""}</h1>
+                                    <h1 className="vip_mem">{listOrder.length > 7 ? "VIP MEMBER" : ""}</h1>
                                 </>
                         </div>
                         <div style={{ display: 'flex' }}>
@@ -86,13 +94,13 @@ function UserPage({ setAlertMessage,setShowAlert, setType }) {
                         </div> 
                         <div className="account-table_row">
                             <div className="table_row-header">Số đơn hàng đã thực hiện:</div>
-                            <div className="table_row-infor">{queryDataOrder.length}</div>
+                            <div className="table_row-infor">{listOrder.length}</div>
                         </div>
                        
                     </div>
                     <div className="Order-list" style={{display: user.role=="employee"?"none":"block"}}>
                             <h3>Đơn hàng của bạn:</h3>
-                            {queryDataOrder.map((order,index) =>(
+                            {listOrder.map((order,index) =>(
                                     <Order order={order} key = {index}  handleDeleteOrder={handleDeleteOrder} 
                                     setAlertMessage={setAlertMessage}
                                     setShowAlert={setShowAlert} setType={setType}/>

@@ -67,7 +67,7 @@ const AdminDashboard = () => {
       <div className='total_by_month'>
         <div className='compareMonth'>
           <h4>SẢN PHẨM BÁN CHẠY : </h4>
-          <CompanyChart OrderList={listOrder} products={productList}/>
+          {/* <CompanyChart OrderList={listOrder} products={productList}/> */}
         </div>
         <div className='total_month-chart'>
           <h3>DOANH THU 6 THÁNG QUA: </h3>

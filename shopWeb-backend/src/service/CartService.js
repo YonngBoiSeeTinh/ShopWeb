@@ -1,10 +1,11 @@
 const Cart = require("../model/CartModel");
 
 const createCart = async (newCart) => {
-    const { userId, productId, amount, price,color } = newCart;
+    const { userId, productId, amount, price,color,version } = newCart;
     try {
         // Kiểm tra nếu cart đã tồn tại dựa trên userId và productId
-        const existingCart = await Cart.findOne({ userId, productId,color });  
+    const { userId, productId, amount, price,color,version } = newCart;
+        const existingCart = await Cart.findOne({ userId, productId,color,version });  
         if (existingCart) {
             // Nếu tồn tại, cập nhật amount và totalPrice
             const updatedAmount = existingCart.amount + amount;

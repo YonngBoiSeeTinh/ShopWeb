@@ -1,22 +1,21 @@
 import React, { useState } from "react";
 import ProductItem from "./ProductItem.js"; 
-import './ProductList.scss'
+import './style/ProductList.scss'
 import PaginationComponent from '../Pagination.jsx';
-const ProductListSearch = ({ listPro, filter }) => {
+const ProductListSearch = ({ listPro = [], filter,name }) => {
   const [currentPage, setCurrentPage] = useState(0); // Trang hiện tại bắt đầu từ 0
-  if (listPro.length === 0) {
+  if (!Array.isArray(listPro) || listPro.length === 0) {
     return (
       <div className="NoPro">
-        <h3 className="nameList" style={{ color: 'red' }}>
+        <h3 className="nameList" style={{ color: "red" }}>
           Không có sản phẩm để hiển thị.
         </h3>
       </div>
     );
   }
 
-  const nameList = filter;
-  const gradient = `linear-gradient(120deg, #42bcf4 0%, #004c70 50%, #42bcf4 100%)`;
-  const borderColor = { borderColor: "#42bcf4" };
+  const nameList = name?name: filter;
+
 
   const itemsPerPage = 4; // Số lượng sản phẩm mỗi trang
   const totalPage = Math.ceil(listPro.length / itemsPerPage); // Tổng số trang
@@ -26,12 +25,12 @@ const ProductListSearch = ({ listPro, filter }) => {
   const startIndex = currentPage * itemsPerPage;
   const currentProducts = listPro.slice(startIndex, startIndex + itemsPerPage);
   return (
-    <div className="ListPro" style={borderColor}>
-      <h3 className="nameList" style={{ background: gradient, color: 'white' }}>
+    <div className="ListPro" >
+      <h3 className="nameList">
         Kết quả tìm kiếm cho {nameList}
       </h3>
 
-      <div className="listProInfilter flexContain">
+      <div className="productList listSarch">
         {currentProducts.map((product, index) => (
           <ProductItem key={index} product={product} />
         ))}

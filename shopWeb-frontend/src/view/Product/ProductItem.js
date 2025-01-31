@@ -6,23 +6,17 @@ import { faStar, faBolt } from '@fortawesome/free-solid-svg-icons';
 function ProductItem({ product }) {
     // hiển thị tên khuyến mãi
     const renderPromoLabel = () => {
-        const promoName = product.promo?.name;  // Sử dụng optional chaining
-        if (promoName === "giamgia") {
+        
+        if (product?.promo > 0) {
             return (
                 <>
-                    <FontAwesomeIcon icon={faBolt} /> Giảm {product.promo?.value ?
-                      product.promo?.value.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })
+                    <FontAwesomeIcon icon={faBolt} /> Giảm {product.promo ?
+                      product.promo.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })
                     : 'Loading...'
                     }
                 </>
             );
-        } else if (promoName === "moi") {
-            return <>Mới ra mắt</>;
-        } else if (promoName === "tragop") {
-            return <>Trả góp 0%</>;
-        } else {
-            return null; // Không có khuyến mãi
-        }
+        } 
     };
 
     const renderOldPrice = () => {

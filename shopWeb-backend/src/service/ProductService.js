@@ -1,5 +1,5 @@
 const Product = require("../model/ProductModel");
-
+const Order = require("../model/OrderModel")
 const createProduct = async (newProduct) => {
     try {
         // Kiểm tra xem tên sản phẩm đã tồn tại chưa 
@@ -52,9 +52,11 @@ const updateProduct = async (id, updatedData) => {
         };
     }
 };
-const updateProductStock = async (id, color, amount) => {
+
+const updateProductStock = async (id, color, version, amount) => {
     try {
         const product = await Product.findById(id);
+
         // Check if the product exists
         if (!product) {
             return {
@@ -62,6 +64,8 @@ const updateProductStock = async (id, color, amount) => {
                 message: 'Product not found',
             };
         }
+
+        // Find the color item
         const colorItem = product.colors.find(item => item.color === color);
         if (!colorItem) {
             return {
@@ -69,23 +73,22 @@ const updateProductStock = async (id, color, amount) => {
                 message: 'Color not found in product',
             };
         }
-
-        // Check if amount exceeds the countInStock
-        if (amount > colorItem.countInstock) {
+       
+        const itemVersion = colorItem.version.find(ver => ver.name === version);
+        if (!itemVersion) {
+            return {
+                status: 'ERR',
+                message: 'Version not found in product',
+            };
+        }  
+        if (amount > itemVersion.countInstock) {
             return {
                 status: 'ERR',
                 message: 'Số lượng vượt quá tồn kho',
             };
         }
-        // Update the countInStock for the specified color
-        const updatedColors = product.colors.map((colorItem) => {
-            if (colorItem.color === color) {
-                return { ...colorItem, countInstock: colorItem.countInstock - amount };
-            }
-            return colorItem;
-        });
-        // Update the product with the modified colors array
-        product.colors = updatedColors;
+        itemVersion.countInstock -= amount;
+
         await product.save();
 
         return {
@@ -101,6 +104,86 @@ const updateProductStock = async (id, color, amount) => {
         };
     }
 };
+
+const addStorageProduct = async (id, color, version, amount) => {
+    try {
+        const product = await Product.findById(id);
+
+        // Check if the product exists
+        if (!product) {
+            return {
+                status: 'ERR',
+                message: 'Product not found',
+            };
+        }
+
+        // Find the color item
+        const colorItem = product.colors.find(item => item.color === color);
+        if (!colorItem) {
+            return {
+                status: 'ERR',
+                message: 'Color not found in product',
+            };
+        }
+       
+        const itemVersion = colorItem.version.find(ver => ver.name === version);
+        if (!itemVersion) {
+            return {
+                status: 'ERR',
+                message: 'Version not found in product',
+            };
+        }  
+     
+        const parsedAmount = Number(amount);
+        const currentStock = itemVersion.countInstock;
+        itemVersion.countInstock = currentStock + parsedAmount;
+
+        await product.save();
+
+        return {
+            status: 'OK',
+            message: 'Product storage updated successfully',
+            data: product,
+        };
+    } catch (error) {
+        return {
+            status: 'ERROR',
+            message: 'Internal server error',
+            err: error.message,
+        };
+    }
+};
+
+const updateSold = async (id,amount) => {
+    try {
+        const product = await Product.findById(id);
+
+        // Check if the product exists
+        if (!product) {
+            return {
+                status: 'ERR',
+                message: 'Product not found',
+            };
+        }
+
+       
+     
+        product.sellCount += amount;
+        await product.save();
+        return {
+            status: 'OK',
+            message: 'Product sold updated successfully',
+            data: product,
+        };
+    } catch (error) {
+        return {
+            status: 'ERROR',
+            message: 'Internal server error',
+            err: error.message,
+        };
+    }
+};
+
 
 
 const getAllProducts = async (limit =20,page=0, sort,filter) => {
@@ -185,6 +268,7 @@ const getDetail = async (id) => {
 
 const deleteProduct = async (id) => {
     try {
+        const orderUpdateResult = await Order.deleteMany({ productId: id });
         const deletedProduct = await Product.findByIdAndDelete(id);
         if (!deletedProduct) {
             return {
@@ -213,5 +297,7 @@ module.exports = {
     getAllProducts,
     deleteProduct,
     getDetail,
-    updateProductStock
+    addStorageProduct,
+    updateProductStock,
+    updateSold
 };

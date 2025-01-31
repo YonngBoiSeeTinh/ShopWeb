@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import './Cart.css';
 import axios from 'axios';
 import '../Alter/Alter'
 const CartItem = ({  cart, handleSelectedCart, setSelectedCart,updateCartList  }) => {
@@ -75,7 +74,11 @@ const CartItem = ({  cart, handleSelectedCart, setSelectedCart,updateCartList  }
       </div>
       <div className="item-details">
         <h3>{cart.name}</h3>
-        <p>Màu: {cart.color}</p>
+        <div className="version_box"> 
+          <p>Màu: {cart.color}</p>
+          <p className="version"> {cart.version}</p>
+        </div>
+       
         <p className="item-price"> {totalItemPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</p>
       </div>
       <div className="quantity-control">

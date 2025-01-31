@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
-import Order from '../Order/Order'
+import Order from '../Order/OrderList'
 import AddressForm from "../../User/Address";
 import { useLocation } from "react-router-dom";
 
@@ -177,7 +177,7 @@ function UserPage({ setAlertMessage,setShowAlert, setType }) {
                         <div style={{ display: 'flex' }}>
                             {isEditingName ? (
                                 <>
-                                    <input className="table_row-infor" value={name} onChange={(e) => setName(e.target.value)} />
+                                    <input className="table_row-infor" value={name} onChange={(e) => setName(e.target.value)} style={{width:"250px"}} />
                                     <button  className="submit_upt_suer" onClick={handleSaveName}>Lưu</button>
                                 </>
                             ) : (
@@ -190,7 +190,7 @@ function UserPage({ setAlertMessage,setShowAlert, setType }) {
                         <div style={{ display: 'flex' }}>
                             {isEditingEmail ? (
                                 <>
-                                    <input className="table_row-infor" value={email} onChange={(e) => setEmail(e.target.value)} />
+                                    <input className="table_row-infor" value={email} onChange={(e) => setEmail(e.target.value)} style={{width:"250px"}}/>
                                     <button  className="submit_upt_suer" onClick={handleSaveEmail}>Lưu</button>
                                 </>
                             ) : (

@@ -23,8 +23,8 @@ const CompanyChart = ({ products = [] ,OrderList=[]}) => {
     OrderList.forEach((order) =>{
       products.forEach((product) => {
         if(product._id === order.productId){
-          if (countCompany[product.company] !== undefined) {
-            countCompany[product.company] += 1;
+          if (countCompany[product.category] !== undefined) {
+            countCompany[product.category] += 1;
           }
         }
       });

@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";  // Import React Slick
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-
+import Link from "antd/es/typography/Link";
 const Banner = () => {
     // Cấu hình cho slider
     const settings = {
@@ -19,6 +19,13 @@ const Banner = () => {
     return (
         <div className="banner">
             <Slider {...settings}>
+                {/* {listBanne.map((banner, index)=>(
+                 <div className="item">
+                    <Link to={`/product/${banner.product}`} >
+                        <img src={banner.image} alt="Banner 1" />
+                    </Link>
+                 </div>
+                ))} */}
                 <div className="item">
                     <img src="img/banners/banner1.jpg" alt="Banner 1" />
                 </div>

@@ -12,17 +12,30 @@
       height: 40px;
       display: flex;
       background-color:  #2f3d74e2;;
-      
       align-items: center;
       li{
         color: white;
         list-style: none;
         margin: 0 20px;
       }  
+      li:hover{
+        cursor: pointer;
+        text-decoration: underline;
+      }
+      li.active {
+        border-bottom: 2px solid #e8ebee;
+        font-weight: bold;
+      }
     }   
   }
 }
-
+.customer_avatar{
+  width: 40px;
+  height: 40px;
+  background-color: #555;
+  margin-right: 5px;
+  border-radius: 100%;
+}
 .order_title{
   display: flex;
   padding-left: 20px;
@@ -44,27 +57,32 @@
     width: 200px;
     align-items: center;
    
-    img{
-      width: 40px;
-      height: 40px;
-      background-color: #555;
-      margin-right: 5px;
-      border-radius: 100%;
-    }
+    
   }
   .addres{
     width: 300px;
   }
   .date{
-    width: 250px;
+    width: 200px;
   }
   .status{
-    width: 200px;
+    width: 150px;
     
   }
  
   .action{
-    width: 250px;
+    display: flex;
+    width: 300px;
+    align-items: center;
+    .look_detail{
+     margin-right: 8px;
+     color: #146ed4;
+     text-decoration: underline;
+    }
+    .look_detail:hover{
+      cursor: pointer;
+      opacity: 0.8;
+    }
   }
 }
  .accept {
@@ -82,9 +100,9 @@
 }
 
 .order{
- width: 1100px;
+  width: 1100px;
   border: #c6c5c5 1px solid;
-  height: 80px;
+  height: 65px;
   margin: 20px auto;
   box-shadow: 0 8px 12px #4f4f4f;
   border-radius: 8px;
@@ -93,65 +111,115 @@
     padding-left: 20px;
     width: 1090px;
     background-color: rgb(255, 255, 255);
-   
-    height: 50px;
+    height: 45px;
     font-size: 15px;
     font-weight: 300;
-    border: none;   
-  }
-  .order_detail{   
-    display: none;
-    background-color: #ededed;
-    padding-top: 20px;
-    box-shadow: 0 8px 10px #4f4f4f;
-    width: 1099px;
-    img{
-      width: 70px;
-      height: 70px;
-      margin-left: 40px;
-      margin-bottom: 10px;
+    border: none;  
+    .addres{
+      display: flex;
+      align-items: center;
     }
+    
     .proName{
-      width: 300px;
-      margin-left: 40px;
-    }
-    .proAmount{
       width: 200px;
-    }
-  
-    .proAmountP{
-      width: 150px;
-    }
-    .warranty{
-      width: 150px;
-      color: #4caf50;
-    }
-
-    .proPrice{
-      width: 350px;
-     
-    }
-    .proPriceP{
-      color:#e49516
+      overflow: hidden;
     }
   }
+ 
   
 }
+.order_item-image{
+  width: 48px;
+  height: 48px;
+  border-radius: 3px;
+} 
 .order:hover{
   cursor: pointer;
 
 }
-.order:hover .order_detail {
+.dialog-order_detail{
   position: absolute;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
- 
-}
-.action{
-  button:hover{
-    cursor: pointer;
-    opacity: 0.8;
+  z-index: 999;
+  top: 120px;
+  left: 400px;
+  background-color: white;
+  width: 900px;
+  height: 350px;
+  padding: 8px;
+  border-radius: 10px;
+  box-shadow: #555 0px 10px 12px;
+  padding-left: 20px;
+  .dialog_header{
+    display: flex;
+    margin: 8px;
+    width: 100%;
+    justify-content: space-between;
+
+    button{
+      width: 30px;
+      height: 20px;
+      background-color: #ff0000;
+      color: white;
+      margin-right: 10px;
+    }
+  }
+  .dialog_content{
+    
+    .dialog_title{
+      width: 98%;
+      display: flex;
+      background-color: #e0dcdc;
+      padding: 5px;
+      border-radius: 4px;
+      height: 35px;
+      align-items: center;
+      margin-top: 20px;
+      
+    }
+    .dialog_infor{
+      display: flex;
+      height: 80px;
+      align-items: center;
+     
+    }
+    .product{
+      width: 350px;
+      display: flex;
+      align-items: center;
+      
+      img{
+        width: 50px;
+        height: 50px;
+      }
+      p{
+       width: 200px;
+        text-wrap: wrap;
+        margin-left: 8px;
+      }
+    }
+    .amount{
+      width:120px;
+     
+    }
+    .colors{
+      width: 100px;
+      
+    }
+    .version{
+      width: 120px;
+     
+    }
+    .total{
+      width: 200px;
+    }
+    .customer{
+      width: 250px;
+      display: flex;
+      align-items: center;
+    }
+    .addres{
+      width: 600px;
+    }
   }
 }
 .accept-btn {
