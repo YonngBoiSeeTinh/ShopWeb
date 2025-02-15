@@ -54,7 +54,18 @@ const AdminDashboard = () => {
   const queryProduct= useQuery({ queryKey: ['products'], queryFn: fetchApiProduct });
   const productList = queryProduct.data || [];
 
+  const fetchApiCategory = async () => {
+    try {
+          const res = await axios.get(`http://localhost:3001/api/category/get`);
+          return res.data.data; // Đảm bảo đây là một mảng
+      } catch (error) {
+          console.error('Error fetching data:', error);
+          throw error;
+      }
+  };
 
+const queryCategory = useQuery({ queryKey: ['categories'], queryFn: fetchApiCategory });
+const listCategory = queryCategory.data || [];
   return (
     <div className="dashboard">
       <div className='card-top'>
@@ -67,7 +78,7 @@ const AdminDashboard = () => {
       <div className='total_by_month'>
         <div className='compareMonth'>
           <h4>SẢN PHẨM BÁN CHẠY : </h4>
-          {/* <CompanyChart OrderList={listOrder} products={productList}/> */}
+          <CompanyChart OrderList={listOrder} products={productList} listCategory={listCategory}/>
         </div>
         <div className='total_month-chart'>
           <h3>DOANH THU 6 THÁNG QUA: </h3>

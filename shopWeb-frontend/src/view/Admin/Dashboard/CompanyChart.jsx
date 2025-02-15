@@ -8,9 +8,9 @@ import {
   Cell,
   ResponsiveContainer,
 } from 'recharts';
-const CompanyChart = ({ products = [] ,OrderList=[]}) => {
+const CompanyChart = ({ products = [] ,OrderList=[],listCategory=[]}) => {
   
-  const arrCompany =['Apple', 'Samsung', 'Oppo', 'Xiaomi', 'Headphone', 'Accessories']
+  const arrCompany =listCategory
 
   const getCompanyData = (company) => {
     const countCompany = {};
@@ -30,7 +30,6 @@ const CompanyChart = ({ products = [] ,OrderList=[]}) => {
       });
     })
     
-   
 
     return countCompany;
   };

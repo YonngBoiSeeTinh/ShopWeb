@@ -34,9 +34,10 @@ const ProductsPage = ({setAlertMessage,setShowAlert, setType}) => {
 
       const fetchApi = async () => {
           try {
-              const res = await axios.get(`http://localhost:3001/api/product/get?page=${currentPage}&limit=8`);
+              const res = await axios.get(`https://localhost:7192/api/Product`);
+              console.log("res data",res.data)
               setTotalPage(res.data.totalPage*10)
-              return res.data.data; // Đảm bảo đây là một mảng
+              return res.data; // Đảm bảo đây là một mảng
           } catch (error) {
               console.error('Error fetching data:', error);
               throw error;
@@ -45,15 +46,17 @@ const ProductsPage = ({setAlertMessage,setShowAlert, setType}) => {
 
       const query = useQuery({ queryKey: ['products', currentPage], queryFn: fetchApi });
       const listPro = query.data || [];
+      console.log("list pro",listPro)
+      console.log(listPro[0].image);
       const [filterListPro, setFilterListPro] = useState(listPro);
 
-      useEffect(() => {
-        if (filter) {
-            setFilterListPro(listPro.filter((item) =>item.name.toLowerCase().includes(filter.toLowerCase())));
-        } else {
-            setFilterListPro(listPro); // Nếu không có filter, hiển thị tất cả
-        }
-    }, [filter, listPro]);
+      // useEffect(() => {
+      //   if (filter) {
+      //       setFilterListPro(listPro.filter((item) =>item.name.toLowerCase().includes(filter.toLowerCase())));
+      //   } else {
+      //       setFilterListPro(listPro); // Nếu không có filter, hiển thị tất cả
+      //   }
+      // }, [filter, listPro]);
 
 
     const handleProductDelete = async (deletedProductId) => {
@@ -155,14 +158,14 @@ const ProductsPage = ({setAlertMessage,setShowAlert, setType}) => {
     };
     const fetchApiCategory = async () => {
       try {
-          const res = await axios.get(`http://localhost:3001/api/category/get`);
-          setTotalPage(res.data.totalPage*10)
-          return res.data.data; // Đảm bảo đây là một mảng
-      } catch (error) {
-          console.error('Error fetching data:', error);
-          throw error;
-      }
-  };
+            const res = await axios.get(`http://localhost:3001/api/category/get`);
+            setTotalPage(res.data.totalPage*10)
+            return res.data.data; // Đảm bảo đây là một mảng
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            throw error;
+        }
+    };
 
   const queryCategory = useQuery({ queryKey: ['categories'], queryFn: fetchApiCategory });
   const listCategory = queryCategory.data || [];
@@ -197,7 +200,7 @@ const ProductsPage = ({setAlertMessage,setShowAlert, setType}) => {
         </div>
         <div className='product_page-ttitle' >Danh sách sản phẩm </div>
         <div className="admin-product-list">
-          {filterListPro.map((product, index)=>(
+          {listPro.map((product, index)=>(
                 <ProductItem product = {product} key={index} onDelete={handleProductDelete}  />       
           ))}
         </div>
