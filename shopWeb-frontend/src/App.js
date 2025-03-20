@@ -41,12 +41,9 @@ import TimeKeeping from './view/Admin/TimeKeeping/TimeKeeping';
 import EmployeeLayout from './view/Employee/EmployeeLayout'
 import EmployeeDasboard from  './view/Employee/Dashboard/EmployeeDasboard'
 import EmployeeProduct from  './view/Employee/Product/ProductsPage'
-import EmployeeOrderPage from  './view/Employee/Order/OrderPage'
 import EmployeeCart from  './view/Employee/Cart/EmployeeCart'
 import ProductDetailPage from './view/Employee/Product/ProductDetail'
-import EmployeeOrderAccept from './view/Employee/Order/OrderAccept'
-import EmployeeOrderNonAccept from './view/Employee/Order/Order'
-import EmployeeOrderPaid from './view/Employee/Order/OrderPaid'
+import EmployeeOrderPage from './view/Employee/Order/OrderPage';
 
 import Alter from './view/Alter/Alter';
 function App() {
@@ -178,12 +175,7 @@ const [updateCart, setUpdateCart] = useState(false);
               <Route path='cart' element={<EmployeeCart />} ></Route>
               <Route path='orders' element={<EmployeeOrderPage />} >
 
-                 <Route path='nonAccept' element={<EmployeeOrderNonAccept setAlertMessage={setAlertMessage} 
-                                          setShowAlert={setShowAlert} setType={setType}/>} /> 
-                 <Route path='accept' element={<EmployeeOrderAccept setAlertMessage={setAlertMessage} setShowAlert={setShowAlert} setType={setType}/>} /> 
-                 <Route path='paied' element={<EmployeeOrderPaid setAlertMessage={setAlertMessage} setShowAlert={setShowAlert} setType={setType}/>} /> 
-              
-              </Route> 
+            </Route> 
                
           </Route>
         </Routes>

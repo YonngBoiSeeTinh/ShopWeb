@@ -124,7 +124,9 @@ const fetchApiProduct = async () => {
                      <div className="proPrice">Tổng tiền: </div>
                    </div>
                    <div style={{display:"flex"}} >
-                     <div className="proName" >{getProduct(order.productId)?.name}</div>
+                     <div className="proName" >
+                     {getProduct(order.productId)?.name}
+                     </div>
                      <div className="proAmountP">{order.amount} </div>
                      <div className="proAmountP">{order.color} </div>
                      <div className="warranty"> {getWarrantyStatus(order.createdAt)}</div>

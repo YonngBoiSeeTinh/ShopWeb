@@ -7,7 +7,7 @@ const ProductItem = ({ product, onDelete }) => {
     
     return (
         <div className="admin-product-item">
-            <img src={`data:image/jpeg;base64,${product.image}`} className='product-img' alt={product.name} />
+            <img src={product?.image || ""} className='product-img' alt={product.name} />
             <h4 className="name">{product.name}</h4>
             <div className="pro-price">
             {product?.price

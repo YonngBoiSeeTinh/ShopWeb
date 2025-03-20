@@ -34,10 +34,10 @@ const ProductsPage = ({setAlertMessage,setShowAlert, setType}) => {
 
       const fetchApi = async () => {
           try {
-              const res = await axios.get(`https://localhost:7192/api/Product`);
-              console.log("res data",res.data)
+              const res = await axios.get(`http://localhost:3001/api/product/get`);
+            
               setTotalPage(res.data.totalPage*10)
-              return res.data; // Đảm bảo đây là một mảng
+              return res.data.data; // Đảm bảo đây là một mảng
           } catch (error) {
               console.error('Error fetching data:', error);
               throw error;
@@ -46,8 +46,7 @@ const ProductsPage = ({setAlertMessage,setShowAlert, setType}) => {
 
       const query = useQuery({ queryKey: ['products', currentPage], queryFn: fetchApi });
       const listPro = query.data || [];
-      console.log("list pro",listPro)
-      console.log(listPro[0].image);
+      
       const [filterListPro, setFilterListPro] = useState(listPro);
 
       // useEffect(() => {
@@ -200,9 +199,10 @@ const ProductsPage = ({setAlertMessage,setShowAlert, setType}) => {
         </div>
         <div className='product_page-ttitle' >Danh sách sản phẩm </div>
         <div className="admin-product-list">
-          {listPro.map((product, index)=>(
-                <ProductItem product = {product} key={index} onDelete={handleProductDelete}  />       
-          ))}
+        {Array.isArray(listPro) && listPro.map((product, index) => (
+            <ProductItem product={product} key={index} onDelete={handleProductDelete} />
+        ))}
+
         </div>
         <Pagination totalPage={totalPage} currentPage={currentPage} setCurrentPage={setCurrentPage} className="pagiantion"></Pagination>    
       <Link to="/admin/addProduct">

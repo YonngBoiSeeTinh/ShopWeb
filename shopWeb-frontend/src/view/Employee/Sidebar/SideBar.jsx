@@ -55,7 +55,7 @@ const Sidebar = () => {
               <span>Giỏ hàng</span>
             </li>
           </Link>
-          <Link to="/employee/orders/nonAccept" style={{ textDecoration: "none" }}>
+          <Link to="/employee/orders" style={{ textDecoration: "none" }}>
             <li>
               <CreditCardOutlinedIcon className="icon" />
               <span>Đơn hàng</span>
